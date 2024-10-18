@@ -1,12 +1,14 @@
 import "./App.css";
+// import { Loading } from "./Pages/Loading/Loading";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Loading } from "./Pages/Loading/Loading";
 
-function App() {
+export function App() {
   return (
-    <>
-      <Loading />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Loading />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
