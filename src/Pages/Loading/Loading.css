@@ -1,0 +1,21 @@
+.loading-page-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+}
+
+.loading-page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.subheading {
+  font-family: sans-serif, "pt-sans";
+  font-weight: lighter;
+  font-size: 14px;
+}
