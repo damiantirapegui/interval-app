@@ -103,12 +103,9 @@ input {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 2px;
-  transition: all 0.3s ease-in-out;
 }
 
 #form-button:active {
   background-color: black;
   color: white;
-  /* width: 270px;
-  height: 45px; */
 }
