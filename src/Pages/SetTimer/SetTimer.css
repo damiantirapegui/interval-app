@@ -23,6 +23,18 @@
   border: 3px solid black;
 }
 
+.arrow--left:active {
+  border: 4px solid white;
+  border-bottom: none;
+  border-right: none;
+}
+
+.arrow--right:active {
+  border: 4px solid white;
+  border-bottom: none;
+  border-left: none;
+}
+
 .arrow--left {
   border-right: none;
   border-bottom: none;
@@ -30,9 +42,19 @@
 }
 
 .minutes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 80px;
   font-family: "PT Sans", sans-serif;
   font-weight: bold;
+}
+
+.minutes::after {
+  content: "minutes";
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: lighter;
 }
 
 .arrow--right {
