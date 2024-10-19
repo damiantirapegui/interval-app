@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+.setTimer-body {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.set-time {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.arrow {
+  height: 22px;
+  width: 22px;
+  border: 3px solid black;
+}
+
+.arrow--left {
+  border-right: none;
+  border-bottom: none;
+  transform: rotate(-45deg);
+}
+
+.minutes {
+  font-size: 80px;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
+}
+
+.arrow--right {
+  border-left: none;
+  border-bottom: none;
+  transform: rotate(45deg);
+}

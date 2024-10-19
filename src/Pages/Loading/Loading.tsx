@@ -1,4 +1,5 @@
 import "./Loading.css";
+import "./../../index.css";
 import { easeOut, motion } from "framer-motion";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,7 +28,7 @@ export function Loading() {
             animate={{ x: 0 }}
             transition={{ duration: 1.2, ease: easeOut }}
           >
-            <img src="./images/logo.png" alt="" />
+            <img src="./images/whiteLogo.png" alt="" />
             <p style={{ fontSize: "20px" }}>INTERVAL</p>
             <p className="subheading">For all your timing needs</p>
           </motion.div>
