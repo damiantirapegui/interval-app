@@ -56,6 +56,20 @@ export function SetTimer() {
             onClick={toggleCountUp}
           ></div>
         </div>
+
+        <form action="" className="form">
+          <div className="checkbox-container">
+            <input type="checkbox" id="intervals" />
+            <label htmlFor="intervals">intervals</label>
+          </div>
+          <div className="checkbox-container">
+            <input type="checkbox" id="break" />
+            <label htmlFor="break">5 min break / interval</label>
+          </div>
+          <div className="form-button-container">
+            <button id="form-button">START TIMER</button>
+          </div>
+        </form>
       </div>
     </>
   );
