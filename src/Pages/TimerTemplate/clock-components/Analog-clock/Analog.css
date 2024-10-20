@@ -4,6 +4,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 .clock {
@@ -12,7 +13,6 @@
   z-index: 1000;
   border-radius: 50%;
   position: relative;
-  display: none;
 }
 
 .clock__axis {
