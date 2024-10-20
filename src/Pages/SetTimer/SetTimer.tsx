@@ -1,7 +1,7 @@
-import { use } from "framer-motion/client";
 import "./SetTimer.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 export function SetTimer() {
   const [showMinuts, setShowMinuts] = useState(0);
@@ -67,7 +67,9 @@ export function SetTimer() {
             <label htmlFor="break">5 min break / interval</label>
           </div>
           <div className="form-button-container">
-            <button id="form-button">START TIMER</button>
+            <Link to="/timer-template">
+              <button id="form-button">START TIMER</button>
+            </Link>
           </div>
         </form>
       </div>

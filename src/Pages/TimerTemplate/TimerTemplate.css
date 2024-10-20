@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+.Heading {
+  position: relative;
+  width: 100px;
+  top: -27px;
+  left: 165px;
+  font-family: "PT Sans", sans-serif;
+  font-size: 20px;
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.abort-button {
+  width: 132px;
+  height: 41px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #22222288;
+  background-color: transparent;
+  border: 1px solid #22222288;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+}

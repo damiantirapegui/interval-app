@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Loading } from "./Pages/Loading/Loading";
 import { SetTimer } from "./Pages/SetTimer/SetTimer";
+import { TimerTemplate } from "./Pages/TimerTemplate/TimerTemplate";
 
 export function App() {
   return (
@@ -14,7 +15,8 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Loading />} />
-          <Route path="setTimer" element={<SetTimer />} />
+          <Route path="setTimer/" element={<SetTimer />}></Route>
+          <Route path="timer-template" element={<TimerTemplate />} />
         </Routes>
       </BrowserRouter>
     </>

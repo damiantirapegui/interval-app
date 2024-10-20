@@ -1,0 +1,58 @@
+.clock-container {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  width: 278px;
+  height: 278px;
+  z-index: 1000;
+  border-radius: 50%;
+  position: relative;
+  display: none;
+}
+
+.clock__axis {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: black;
+  border-radius: 50%;
+  top: calc(50% - 2.5px);
+  left: calc(50% - 2.5px);
+  z-index: 1001;
+}
+
+.clock__minute,
+.clock__second {
+  position: absolute;
+  left: 50%;
+  transform-origin: bottom center;
+  background: black;
+  border-radius: 5px;
+}
+
+.clock__minute {
+  width: 4px;
+  height: 100px; /* Justera höjd efter behov */
+  bottom: 50%;
+  transform: rotate(180deg); /* Exempelrotation för 6:00 */
+}
+
+.clock__second {
+  width: 2px;
+  height: 120px; /* Justera höjd efter behov */
+  bottom: 50%;
+  background: red; /* Färg för sekundvisaren */
+  transform: rotate(270deg); /* Exempelrotation för 9:00 */
+}
+
+.clock__indicator {
+  width: 10px; /* Justera bredd efter behov */
+  height: 2px; /* Justera höjd efter behov */
+  background: black; /* Färg för indikatorerna */
+  position: absolute;
+}
