@@ -1,16 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
-
-.digital-clock-container {
+.text-clock-container {
   display: flex;
   height: 80vh;
   width: 100%;
   justify-content: center;
   align-items: center;
   font-family: "PT Sans", sans-serif;
-  display: none;
 }
 
-.digital-clock {
-  font-size: 80px;
+.text-clock {
+  width: 279px;
+  font-size: 32px;
   font-weight: 700;
 }
