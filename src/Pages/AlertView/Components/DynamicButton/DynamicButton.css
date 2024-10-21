@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+.button-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  height: 76vh;
+  z-index: 3;
+}
+
+.button {
+  max-width: 186px;
+  height: 41px;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 10px;
+  font-size: 16px;
+  white-space: nowrap;
+  color: white;
+  border-radius: 5px;
+  font-weight: 700;
+  font-family: "PT Sans", sans-serif;
+  letter-spacing: 2px;
+  /* z-index: 2; */
+}

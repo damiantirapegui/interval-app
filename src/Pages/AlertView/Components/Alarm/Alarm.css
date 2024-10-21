@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+.alarm-container {
+  padding-top: 70px;
+  display: flex;
+  width: 100px;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.alert {
+  color: white;
+  margin-top: 12px;
+  width: 200px;
+  text-align: center;
+  font-family: "PT Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
