@@ -1,1 +1,62 @@
- 
+.breake-body {
+  position: absolute;
+  top: 0;
+  /* z-index: 1000; */
+  width: 100%;
+  height: 100vh;
+  background-color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-color-container {
+  width: 100%;
+  height: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.background-one {
+  width: 506px;
+  height: 506px;
+  background-color: #ffffff05;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.background-two {
+  width: 344px;
+  height: 344px;
+  background-color: #ffffff05;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.background-three {
+  width: 234px;
+  height: 234px;
+  background-color: #ffffff08;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  width: 152px;
+  height: 152px;
+  background-color: #ffffff0a;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
