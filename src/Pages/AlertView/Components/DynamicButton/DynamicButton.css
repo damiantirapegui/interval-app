@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 
-.button-container {
+.button-alert-container {
   display: flex;
   align-items: end;
   position: absolute;

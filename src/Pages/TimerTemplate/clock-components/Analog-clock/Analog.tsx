@@ -1,4 +1,8 @@
 import "./Analog.css";
+import { useLocation } from "react-router-dom";
+import useTimer from "easytimer-react-hook";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export function Analog() {
   return (
@@ -7,7 +11,6 @@ export function Analog() {
         <div className="clock">
           <div className="clock__second"></div>
           <div className="clock__minute"></div>
-          <div className="clock__hour"></div>
           <div className="clock__axis"></div>
           {Array.from({ length: 60 }).map((_, index) => (
             <section

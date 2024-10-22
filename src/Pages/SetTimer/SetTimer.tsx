@@ -1,11 +1,16 @@
 import "./SetTimer.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useTimer from "easytimer-react-hook";
 
 export function SetTimer() {
   const [showMinuts, setShowMinuts] = useState(0);
   const [isBouncing, setIsBouncing] = useState(false);
+  const [timer] = useTimer({ countdown: true });
+
+  console.log(timer);
+  // console.log(showMinuts);
 
   const toggleCountUp = () => {
     setShowMinuts(showMinuts + 1);
@@ -32,6 +37,10 @@ export function SetTimer() {
     setTimeout(() => {
       setIsBouncing(false); // Återställ tillstånd efter animation
     }, 100); // Samma tid som animationens varaktighet
+  };
+
+  const startTimer = () => {
+    timer.start({ startValues: { seconds: showMinuts * 60 }, countdown: true });
   };
 
   return (
@@ -67,8 +76,10 @@ export function SetTimer() {
             <label htmlFor="break">5 min break / interval</label>
           </div>
           <div className="form-button-container">
-            <Link to="/timer-template">
-              <button id="form-button">START TIMER</button>
+            <Link to={`/timer-template?minutes=${showMinuts}`}>
+              <button id="form-button" onClick={startTimer}>
+                START TIMER
+              </button>
             </Link>
           </div>
         </form>
