@@ -26,7 +26,7 @@ export function TimerTemplate() {
     <>
       <p className="Heading">interval</p>
       <div onClick={handleClockTap}>
-        {currentClock === "analog" && <Analog />}
+        {currentClock === "analog" && <Analog minutes={showMinuts} />}
         {currentClock === "digital" && <Digital minutes={showMinuts} />}
         {currentClock === "text" && <TextClock />}
       </div>
