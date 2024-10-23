@@ -1,40 +1,20 @@
 import "./Digital.css";
 
-import useTimer from "easytimer-react-hook";
-import { useEffect, useState } from "react";
-
 interface DigitalProps {
-  minutes: number;
+  minute: number;
+  seconds: number;
 }
 
-export function Digital({ minutes }: DigitalProps) {
-  const [timer] = useTimer();
-  const [time, setTime] = useState({ minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    if (minutes > 0) {
-      timer.start({ countdown: true, startValues: { seconds: minutes * 60 } });
-
-      timer.addEventListener("secondsUpdated", () => {
-        setTime({
-          minutes: timer.getTimeValues().minutes,
-          seconds: timer.getTimeValues().seconds,
-        });
-      });
-
-      return () => {
-        timer.stop;
-      };
-    }
-  }, [minutes, timer]);
+export const Digital = ({ minute, seconds }: DigitalProps) => {
+  const formatTime = (time: number) => {
+    return time < 10 ? `0${time}` : time.toString();
+  };
 
   return (
-    <>
-      <div className="digital-clock-container">
-        <h1 className="digital-clock">
-          {time.minutes}:{time.seconds < 10 ? `0${time.seconds}` : time.seconds}
-        </h1>
-      </div>
-    </>
+    <div className="digital-clock-container">
+      <h1 className="digital-clock">
+        {formatTime(minute)}:{formatTime(seconds)}
+      </h1>
+    </div>
   );
-}
+};

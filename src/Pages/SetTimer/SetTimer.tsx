@@ -4,13 +4,32 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useTimer from "easytimer-react-hook";
 
-export function SetTimer() {
-  const [showMinuts, setShowMinuts] = useState(0);
-  const [isBouncing, setIsBouncing] = useState(false);
-  const [timer] = useTimer({ countdown: true });
+interface TimerHookConfig {
+  startMinutes?: number;
+  countdown?: boolean;
+}
 
-  console.log(timer);
-  // console.log(showMinuts);
+export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
+  const [showMinuts, setShowMinuts] = useState(startMinutes ?? 0); //
+  const [isBouncing, setIsBouncing] = useState(false);
+  const [showSeconds, setShowSeconds] = useState(0);
+
+  const [timer] = useTimer({
+    startValues: {
+      minutes: startMinutes ?? 0,
+      seconds: 0,
+    },
+    countdown: countdown,
+  });
+
+  //Start timer with min and seconds
+  const startTime = () => {
+    setShowMinuts(startMinutes ?? 0);
+
+    timer.start();
+    const timeValues = timer.getTimeValues();
+    setShowSeconds(timeValues.seconds);
+  };
 
   const toggleCountUp = () => {
     setShowMinuts(showMinuts + 1);
@@ -37,10 +56,6 @@ export function SetTimer() {
     setTimeout(() => {
       setIsBouncing(false); // Återställ tillstånd efter animation
     }, 100); // Samma tid som animationens varaktighet
-  };
-
-  const startTimer = () => {
-    timer.start({ startValues: { seconds: showMinuts * 60 }, countdown: true });
   };
 
   return (
@@ -76,8 +91,10 @@ export function SetTimer() {
             <label htmlFor="break">5 min break / interval</label>
           </div>
           <div className="form-button-container">
-            <Link to={`/timer-template?minutes=${showMinuts}`}>
-              <button id="form-button" onClick={startTimer}>
+            <Link
+              to={`/timer-template?minutes=${showMinuts}&seconds=${showSeconds}`}
+            >
+              <button id="form-button" onClick={startTime}>
                 START TIMER
               </button>
             </Link>
@@ -86,4 +103,4 @@ export function SetTimer() {
       </div>
     </>
   );
-}
+};
