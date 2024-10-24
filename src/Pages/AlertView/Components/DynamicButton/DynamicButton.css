@@ -2,6 +2,8 @@
 
 .button-alert-container {
   display: flex;
+  width: 100%;
+  justify-content: center;
   align-items: end;
   position: absolute;
   height: 76vh;

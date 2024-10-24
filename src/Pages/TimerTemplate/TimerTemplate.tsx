@@ -12,16 +12,21 @@ import { AlertView } from "../AlertView/AlertView";
 export const TimerTemplate = () => {
   const location: any = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const isChecked = queryParams.get("isChecked");
 
-  // Konvertera minuter och sekunder till nummer
+  console.log(isChecked);
+
   const initialMinutes = parseInt(queryParams.get("minutes") || "0", 10);
   const initialSeconds = parseInt(queryParams.get("seconds") || "0", 10);
 
   const [minutes, setMinutes] = useState(initialMinutes);
   const [seconds, setSeconds] = useState(initialSeconds);
   const [currentClock, setCurrentClock] = useState("analog");
-  const [isTimeUp, setIsTimeUp] = useState(false);
 
+  const [alarmIsActive, setAlarmIsActive] = useState(false); // Use state for when time is up
+  const [timerIsActive, setTimerIsActive] = useState(false);
+
+  // My timer for all clocks
   const [timer] = useTimer({
     startValues: {
       minutes: initialMinutes,
@@ -33,22 +38,42 @@ export const TimerTemplate = () => {
   useEffect(() => {
     timer.start();
 
+    setTimerIsActive(true);
+
     const updateTimerValues = setInterval(() => {
       const timeValues = timer.getTimeValues();
       setMinutes(timeValues.minutes);
       setSeconds(timeValues.seconds);
 
-      if (timeValues.minutes === 0 && timeValues.seconds === 0) {
-        setIsTimeUp(true);
-        clearInterval(updateTimerValues);
-      }
-    }, 1000);
+      const handleTargetAchieved = () => {
+        if (isChecked) {
+          // Återställ och starta timern om isChecked är true
+          setAlarmIsActive(false);
+          setTimeout(() => {
+            // setTimeout för att vänta 1 sekund innan evenlyssnaren startar om tiden för att hinna se 00:00.
+            timer.reset();
+            timer.start({
+              startValues: {
+                minutes: initialMinutes,
+                seconds: initialSeconds,
+              },
+            });
+          }, 1000);
+        } else {
+          setAlarmIsActive(true); // När tiden är slut, aktivera alarm
+          setTimerIsActive(false);
+        }
+      };
+      timer.addEventListener("targetAchieved", handleTargetAchieved);
+    });
 
-    return () => clearInterval(updateTimerValues);
-  }, [timer]);
+    return () => {
+      clearInterval(updateTimerValues);
+    };
+  }, [timer, isChecked, initialMinutes, initialSeconds]);
 
-  if (isTimeUp) {
-    return <AlertView />;
+  if (!timerIsActive && alarmIsActive) {
+    return <AlertView showAlarm={alarmIsActive} />;
   }
 
   const handleClockTap = () => {

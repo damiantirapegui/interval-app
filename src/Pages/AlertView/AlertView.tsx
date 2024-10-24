@@ -3,7 +3,11 @@ import { Alarm } from "./Components/Alarm/Alarm";
 import { Breake } from "./Components/Break/Breake";
 import { DynamicButton } from "./Components/DynamicButton/DynamicButton";
 
-export function AlertView() {
+interface AlertProps {
+  showAlarm: boolean;
+}
+
+export const AlertView: React.FC<AlertProps> = ({ showAlarm }) => {
   return (
     <>
       <div className="breake-body">
@@ -12,7 +16,9 @@ export function AlertView() {
             <div className="background-two">
               <div className="background-three">
                 <div className="center">
-                  <Alarm />
+                  <div style={{ opacity: showAlarm ? 1 : 0 }}>
+                    <Alarm />
+                  </div>
                   <Breake />
                 </div>
               </div>
@@ -23,4 +29,4 @@ export function AlertView() {
       <DynamicButton />
     </>
   );
-}
+};

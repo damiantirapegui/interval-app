@@ -13,6 +13,7 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
   const [showMinuts, setShowMinuts] = useState(startMinutes ?? 0); //
   const [isBouncing, setIsBouncing] = useState(false);
   const [showSeconds, setShowSeconds] = useState(0);
+  const [isChecked, setIsChecked] = useState(false);
 
   const [timer] = useTimer({
     startValues: {
@@ -22,13 +23,26 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
     countdown: countdown,
   });
 
-  //Start timer with min and seconds
+  const handleCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  // Start timer with min and seconds
   const startTime = () => {
     setShowMinuts(startMinutes ?? 0);
 
     timer.start();
     const timeValues = timer.getTimeValues();
     setShowSeconds(timeValues.seconds);
+
+    if (isChecked) {
+      timer.reset();
+      timer.start({
+        startValues: { minutes: startMinutes ?? 0, seconds: 0 },
+      });
+    } else {
+      timer.start();
+    }
   };
 
   const toggleCountUp = () => {
@@ -83,7 +97,12 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
 
         <form action="" className="form">
           <div className="checkbox-container">
-            <input type="checkbox" id="intervals" />
+            <input
+              type="checkbox"
+              id="intervals"
+              checked={isChecked}
+              onChange={handleCheckBox}
+            />
             <label htmlFor="intervals">intervals</label>
           </div>
           <div className="checkbox-container">
@@ -92,7 +111,13 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
           </div>
           <div className="form-button-container">
             <Link
-              to={`/timer-template?minutes=${showMinuts}&seconds=${showSeconds}`}
+              to={
+                {
+                  pathname: `/timer-template`,
+                  search: `?minutes=${showMinuts}&seconds=${showSeconds}&isChecked=${isChecked}`,
+                  state: { isChecked },
+                } as any
+              }
             >
               <button id="form-button" onClick={startTime}>
                 START TIMER
