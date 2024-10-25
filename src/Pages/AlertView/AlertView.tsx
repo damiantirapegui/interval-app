@@ -10,12 +10,14 @@ interface AlertProps {
     seconds: number;
     minutes: number;
   };
+  handleButton: () => void;
 }
 
 export const AlertView: React.FC<AlertProps> = ({
   showAlarm,
   showBreak,
   passTimer,
+  handleButton,
 }) => {
   return (
     <>
@@ -37,7 +39,7 @@ export const AlertView: React.FC<AlertProps> = ({
           </div>
         </div>
       </div>
-      <DynamicButton />
+      <DynamicButton showBreak={showBreak} handleDynamicButton={handleButton} />
     </>
   );
 };

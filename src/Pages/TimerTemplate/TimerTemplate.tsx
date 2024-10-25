@@ -5,7 +5,7 @@ import { Digital } from "./clock-components/Digital-clock/Digital";
 import { TextClock } from "./clock-components/Text-clock/TextClock";
 import { useLocation } from "react-router-dom";
 import useTimer from "easytimer-react-hook";
-
+import { useNavigate } from "react-router-dom";
 import "./TimerTemplate.css";
 import { AlertView } from "../AlertView/AlertView";
 
@@ -14,7 +14,8 @@ export const TimerTemplate = () => {
   const queryParams = new URLSearchParams(location.search);
   const isChecked = queryParams.get("isChecked");
   const breakCheck = queryParams.get("breakeIsChecked");
-  // const showBreak = breakCheck === "true";
+
+  const navigate = useNavigate();
 
   const initialMinutes = parseInt(queryParams.get("minutes") || "0", 10);
   const initialSeconds = parseInt(queryParams.get("seconds") || "0", 10);
@@ -26,6 +27,25 @@ export const TimerTemplate = () => {
   const [alarmIsActive, setAlarmIsActive] = useState(false); // Use state for when time is up
   const [timerIsActive, setTimerIsActive] = useState(false);
   const [breakeView, setBreakView] = useState(false);
+  const handleAlertButton = () => {
+    if (alarmIsActive) {
+      setAlarmIsActive(false);
+      timer.reset();
+      timer.stop();
+      setTimerIsActive(false);
+      navigate("/setTimer/");
+    } else if (breakeView) {
+      pauseTimer.stop();
+      pauseTimer.reset();
+      setBreakView(false);
+      timer.reset();
+      timer.start();
+    } else {
+      timer.stop();
+      timer.reset();
+      navigate("/setTimer/");
+    }
+  };
 
   // My timer for all clocks
   const [timer] = useTimer({
@@ -38,8 +58,8 @@ export const TimerTemplate = () => {
 
   const [pauseTimer] = useTimer({
     startValues: {
-      minutes: 0,
-      seconds: 7,
+      minutes: 5,
+      seconds: 0,
     },
     countdown: true,
   });
@@ -117,6 +137,7 @@ export const TimerTemplate = () => {
         showAlarm={alarmIsActive}
         showBreak={breakeView}
         passTimer={pauseTimer.getTimeValues()}
+        handleButton={handleAlertButton}
       />
     );
   }
@@ -146,7 +167,11 @@ export const TimerTemplate = () => {
         )}
       </div>
       <div className="button-container">
-        <button type="button" className="abort-button">
+        <button
+          type="button"
+          className="abort-button"
+          onClick={handleAlertButton}
+        >
           ABORT TIMER
         </button>
       </div>
