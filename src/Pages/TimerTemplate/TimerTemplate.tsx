@@ -9,13 +9,17 @@ import { useNavigate } from "react-router-dom";
 import "./TimerTemplate.css";
 import { AlertView } from "../AlertView/AlertView";
 
+// In this template is where all the magic happens.
+// In here we have our timer and all the logic to make it work
+// All the clock compontents you can find in the clock-compontents folder.
 export const TimerTemplate = () => {
+  //I chose query params for this small project to easily manipulate the time when i needed to test it and also to check i boolean state for certain functions and logic.
   const location: any = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const isChecked = queryParams.get("isChecked");
   const breakCheck = queryParams.get("breakeIsChecked");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use navigate to render setTimer page if time is up and no intervals were chosen in setTimer from the begining
 
   const initialMinutes = parseInt(queryParams.get("minutes") || "0", 10);
   const initialSeconds = parseInt(queryParams.get("seconds") || "0", 10);
@@ -27,7 +31,10 @@ export const TimerTemplate = () => {
   const [alarmIsActive, setAlarmIsActive] = useState(false); // Use state for when time is up
   const [timerIsActive, setTimerIsActive] = useState(false);
   const [breakeView, setBreakView] = useState(false);
+
   const handleAlertButton = () => {
+    //Here we rule when we press no puse go now button when puase view is active
+    // Or when alarm is active and we want to set new time
     if (alarmIsActive) {
       setAlarmIsActive(false);
       timer.reset();
@@ -56,6 +63,7 @@ export const TimerTemplate = () => {
     countdown: true,
   });
 
+  // My timer for the pause event
   const [pauseTimer] = useTimer({
     startValues: {
       minutes: 5,
@@ -78,9 +86,7 @@ export const TimerTemplate = () => {
 
       const handleTargetAchieved = () => {
         if (isChecked === "true") {
-          // Återställ och starta timern om isChecked är true
           setTimeout(() => {
-            // setTimeout för att vänta 1 sekund innan evenlyssnaren startar om tiden för att hinna se 00:00.
             timer.start({
               startValues: {
                 minutes: initialMinutes,
@@ -97,7 +103,6 @@ export const TimerTemplate = () => {
           setBreakView(true);
           pauseTimer.start();
           pauseTimer.stop();
-          // pauseTimer.stop()
           pauseTimer.reset();
 
           const handlePauseEnd = () => {

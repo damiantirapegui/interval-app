@@ -18,4 +18,6 @@ body {
   margin: 13px 0 0 16px;
   width: 32px;
   height: 32px;
+  position: absolute;
+  z-index: 1000;
 }

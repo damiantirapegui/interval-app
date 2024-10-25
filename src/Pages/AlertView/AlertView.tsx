@@ -13,6 +13,11 @@ interface AlertProps {
   handleButton: () => void;
 }
 
+// When time is up and or when we have pause/intervals then whis page turns on.
+// We have the same page for the same page for both alarm and pause view. This makes the page more dynamically
+// Go to components folder in the Alertview folder. In there you will find the alarm and pause view
+// Also you will find my dynamic button.
+
 export const AlertView: React.FC<AlertProps> = ({
   showAlarm,
   showBreak,

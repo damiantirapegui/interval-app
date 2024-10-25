@@ -9,13 +9,16 @@ interface TimerHookConfig {
   countdown?: boolean;
 }
 
+// With easy timer we can send the time to the url
 export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
+  // UseStates
   const [showMinuts, setShowMinuts] = useState(startMinutes ?? 0); //
   const [isBouncing, setIsBouncing] = useState(false);
   const [showSeconds, setShowSeconds] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
   const [breakIsChecked, setBreakIsChecked] = useState(false);
 
+  // My timer. As soon as start button is pressed we render to Timertemplate page where we then see the visiual timer.
   const [timer] = useTimer({
     startValues: {
       minutes: startMinutes ?? 0,
@@ -40,6 +43,7 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
     const timeValues = timer.getTimeValues();
     setShowSeconds(timeValues.seconds);
 
+    //Condition to send the chosen time if intervals is checked. We send this as a prop to TimerTemplate
     if (isChecked) {
       timer.reset();
       timer.start({
@@ -73,8 +77,8 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
   const triggerBounce = () => {
     setIsBouncing(true);
     setTimeout(() => {
-      setIsBouncing(false); // Återställ tillstånd efter animation
-    }, 100); // Samma tid som animationens varaktighet
+      setIsBouncing(false);
+    }, 100);
   };
 
   return (

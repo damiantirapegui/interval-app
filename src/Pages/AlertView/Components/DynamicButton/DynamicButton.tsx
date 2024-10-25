@@ -6,6 +6,8 @@ interface DynamicButtonProps {
   handleDynamicButton: () => void;
 }
 
+// Here we tell the button witch text it should but in our dynamic button.
+// We use this button for both the alarm and pause view
 export const DynamicButton: React.FC<DynamicButtonProps> = ({
   showBreak,
   handleDynamicButton,

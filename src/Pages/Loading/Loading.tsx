@@ -5,17 +5,18 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+/* Loading page */
 export function Loading() {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
 
+  // Click function to render setTime page with a animation switch
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     event.preventDefault();
-    setClicked(true);
+    setClicked(true); // Animation switch
 
-    // To see the effect on tapping the link
     setTimeout(() => {
       navigate("/setTimer");
     }, 1000);
