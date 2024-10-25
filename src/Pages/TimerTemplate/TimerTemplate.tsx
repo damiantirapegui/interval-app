@@ -13,8 +13,8 @@ export const TimerTemplate = () => {
   const location: any = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const isChecked = queryParams.get("isChecked");
-
-  console.log(isChecked);
+  const breakCheck = queryParams.get("breakeIsChecked");
+  // const showBreak = breakCheck === "true";
 
   const initialMinutes = parseInt(queryParams.get("minutes") || "0", 10);
   const initialSeconds = parseInt(queryParams.get("seconds") || "0", 10);
@@ -25,6 +25,7 @@ export const TimerTemplate = () => {
 
   const [alarmIsActive, setAlarmIsActive] = useState(false); // Use state for when time is up
   const [timerIsActive, setTimerIsActive] = useState(false);
+  const [breakeView, setBreakView] = useState(false);
 
   // My timer for all clocks
   const [timer] = useTimer({
@@ -35,45 +36,89 @@ export const TimerTemplate = () => {
     countdown: true,
   });
 
+  const [pauseTimer] = useTimer({
+    startValues: {
+      minutes: 0,
+      seconds: 7,
+    },
+    countdown: true,
+  });
+
   useEffect(() => {
     timer.start();
+    console.log(pauseTimer.getTimeValues());
 
-    setTimerIsActive(true);
+    setTimerIsActive(true); //state 4
 
     const updateTimerValues = setInterval(() => {
       const timeValues = timer.getTimeValues();
+
       setMinutes(timeValues.minutes);
       setSeconds(timeValues.seconds);
 
       const handleTargetAchieved = () => {
-        if (isChecked) {
+        if (isChecked === "true") {
           // Återställ och starta timern om isChecked är true
-          setAlarmIsActive(false);
           setTimeout(() => {
             // setTimeout för att vänta 1 sekund innan evenlyssnaren startar om tiden för att hinna se 00:00.
+            timer.start({
+              startValues: {
+                minutes: initialMinutes,
+                seconds: initialSeconds,
+              },
+            }),
+              timer.reset;
+
+            console.log("Nu körs intervallet");
+          }, 1000);
+        } else if (breakCheck === "true") {
+          setTimerIsActive(false);
+          timer.pause();
+          setBreakView(true);
+          pauseTimer.start();
+          pauseTimer.stop();
+          // pauseTimer.stop()
+          pauseTimer.reset();
+
+          const handlePauseEnd = () => {
             timer.reset();
+            setBreakView(false);
+            setTimerIsActive(true);
+            setAlarmIsActive(false);
             timer.start({
               startValues: {
                 minutes: initialMinutes,
                 seconds: initialSeconds,
               },
             });
-          }, 1000);
+
+            pauseTimer.removeEventListener("targetAchieved", handlePauseEnd);
+          };
+
+          pauseTimer.addEventListener("targetAchieved", handlePauseEnd);
         } else {
           setAlarmIsActive(true); // När tiden är slut, aktivera alarm
           setTimerIsActive(false);
         }
       };
       timer.addEventListener("targetAchieved", handleTargetAchieved);
+
+      pauseTimer.addEventListener("targetAchieved", handleTargetAchieved);
     });
 
     return () => {
       clearInterval(updateTimerValues);
     };
-  }, [timer, isChecked, initialMinutes, initialSeconds]);
+  }, [timer, isChecked, initialMinutes, initialSeconds, pauseTimer]);
 
-  if (!timerIsActive && alarmIsActive) {
-    return <AlertView showAlarm={alarmIsActive} />;
+  if ((!timerIsActive && alarmIsActive) || (!timerIsActive && breakeView)) {
+    return (
+      <AlertView
+        showAlarm={alarmIsActive}
+        showBreak={breakeView}
+        passTimer={pauseTimer.getTimeValues()}
+      />
+    );
   }
 
   const handleClockTap = () => {

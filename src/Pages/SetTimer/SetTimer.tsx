@@ -14,6 +14,7 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
   const [isBouncing, setIsBouncing] = useState(false);
   const [showSeconds, setShowSeconds] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
+  const [breakIsChecked, setBreakIsChecked] = useState(false);
 
   const [timer] = useTimer({
     startValues: {
@@ -25,6 +26,10 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
 
   const handleCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
+  };
+
+  const handleBreakCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBreakIsChecked(event.target.checked);
   };
 
   // Start timer with min and seconds
@@ -106,7 +111,12 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
             <label htmlFor="intervals">intervals</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" id="break" />
+            <input
+              type="checkbox"
+              id="break"
+              // breakeCheck={breakIsChecked}
+              onChange={handleBreakCheckBox}
+            />
             <label htmlFor="break">5 min break / interval</label>
           </div>
           <div className="form-button-container">
@@ -114,7 +124,7 @@ export const SetTimer = ({ startMinutes, countdown }: TimerHookConfig) => {
               to={
                 {
                   pathname: `/timer-template`,
-                  search: `?minutes=${showMinuts}&seconds=${showSeconds}&isChecked=${isChecked}`,
+                  search: `?minutes=${showMinuts}&seconds=${showSeconds}&isChecked=${isChecked}&breakeIsChecked=${breakIsChecked}`,
                   state: { isChecked },
                 } as any
               }

@@ -5,9 +5,18 @@ import { DynamicButton } from "./Components/DynamicButton/DynamicButton";
 
 interface AlertProps {
   showAlarm: boolean;
+  showBreak: boolean;
+  passTimer: {
+    seconds: number;
+    minutes: number;
+  };
 }
 
-export const AlertView: React.FC<AlertProps> = ({ showAlarm }) => {
+export const AlertView: React.FC<AlertProps> = ({
+  showAlarm,
+  showBreak,
+  passTimer,
+}) => {
   return (
     <>
       <div className="breake-body">
@@ -19,7 +28,9 @@ export const AlertView: React.FC<AlertProps> = ({ showAlarm }) => {
                   <div style={{ opacity: showAlarm ? 1 : 0 }}>
                     <Alarm />
                   </div>
-                  <Breake />
+                  <div style={{ opacity: showBreak ? 1 : 0 }}>
+                    <Breake passTime={passTimer} />
+                  </div>
                 </div>
               </div>
             </div>
