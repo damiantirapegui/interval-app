@@ -49,27 +49,27 @@ npm run dev
 
 ### Loading Page
 
-<img src="images/loading.png" alt="Loading Page" width="500"/>
+<img src="images/loading.png" alt="Loading Page" width="300"/>
 
 ### Set Timer Page
 
-<img src="images/setTimer.png" alt="Set Timer Page" width="500"/>
+<img src="images/setTimer.png" alt="Set Timer Page" width="300"/>
 
 ### Analog View
 
-<img src="images/analog.png" alt="Analog View" width="500"/>
+<img src="images/analog.png" alt="Analog View" width="300"/>
 
 ### Digital View
 
-<img src="images/digital.png" alt="Digital View" width="500"/>
+<img src="images/digital.png" alt="Digital View" width="300"/>
 
 ### Text View
 
-<img src="images/text.png" alt="Text View" width="500"/>
+<img src="images/text.png" alt="Text View" width="300"/>
 
 ### Alarm
 
-<img src="images/alarm.png" alt="Alarm" width="500"/>
+<img src="images/alarm.png" alt="Alarm" width="300"/>
 
 ## Future Enhancements
 
