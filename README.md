@@ -47,29 +47,32 @@ npm run dev
 
 ## Screenshots
 
-### Loading Page
-
-<img src="images/loading.png" alt="Loading Page" width="300"/>
-
-### Set Timer Page
-
-<img src="images/setTimer.png" alt="Set Timer Page" width="300"/>
-
-### Analog View
-
-<img src="images/analog.png" alt="Analog View" width="300"/>
-
-### Digital View
-
-<img src="images/digital.png" alt="Digital View" width="300"/>
-
-### Text View
-
-<img src="images/text.png" alt="Text View" width="300"/>
-
-### Alarm
-
-<img src="images/alarm.png" alt="Alarm" width="300"/>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <div style="flex: 1; padding: 10px;">
+    <h4>Loading Page</h4>
+    <img src="images/loading.png" alt="Loading Page" width="100%"/>
+  </div>
+  <div style="flex: 1; padding: 10px;">
+    <h4>Set Timer Page</h4>
+    <img src="images/setTimer.png" alt="Set Timer Page" width="100%"/>
+  </div>
+  <div style="flex: 1; padding: 10px;">
+    <h4>Analog View</h4>
+    <img src="images/analog.png" alt="Analog View" width="100%"/>
+  </div>
+  <div style="flex: 1; padding: 10px;">
+    <h4>Digital View</h4>
+    <img src="images/digital.png" alt="Digital View" width="100%"/>
+  </div>
+  <div style="flex: 1; padding: 10px;">
+    <h4>Text View</h4>
+    <img src="images/text.png" alt="Text View" width="100%"/>
+  </div>
+  <div style="flex: 1; padding: 10px;">
+    <h4>Alarm</h4>
+    <img src="images/alarm.png" alt="Alarm" width="100%"/>
+  </div>
+</div>
 
 ## Future Enhancements
 
